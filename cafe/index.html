@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ember & Bloom — A cozy artisan cafe serving handcrafted coffee, fresh pastries, and warm memories. Visit us for a taste of something real.">
+    <title>Ember & Bloom — Artisan Cafe & Coffee House</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  NAVIGATION                                         -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-icon">☕</span>
+                <span class="logo-text">Ember <span class="logo-ampersand">&</span> Bloom</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#specials" class="nav-link">Menu</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <a href="#contact" class="nav-cta">Reserve a Table</a>
+
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="#specials" class="mobile-nav-link">Menu</a></li>
+                <li><a href="#about" class="mobile-nav-link">About</a></li>
+                <li><a href="#gallery" class="mobile-nav-link">Gallery</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+                <li><a href="#contact" class="mobile-cta-btn">Reserve a Table</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  HERO SECTION                                       -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-bg" style="background-image: url('images/hero.jpg');"></div>
+        <div class="hero-content animate-on-scroll">
+            <span class="hero-label">☕ freshly brewed today</span>
+            <h1 class="hero-title">Where Every Cup<br>Tells a Story</h1>
+            <p class="hero-subtitle">
+                A cozy corner for those who believe coffee is more than a drink — it's a moment, 
+                a conversation, a warm pause in a busy world.
+            </p>
+            <div class="hero-ctas">
+                <a href="#specials" class="btn btn-primary">
+                    <span>Explore Menu</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span>Order Now</span>
+                </a>
+            </div>
+            <div class="hero-scroll-hint">
+                <span>scroll to discover</span>
+                <div class="scroll-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  SPECIALS / MENU SECTION                            -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="specials" id="specials">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">our favorites</span>
+                <h2 class="section-title">Today's Specials</h2>
+                <p class="section-desc">Handpicked by our baristas — the drinks and bites we're proudest of right now.</p>
+            </div>
+
+            <div class="specials-grid">
+                <!-- Card 1: Signature Latte -->
+                <div class="special-card animate-on-scroll stagger">
+                    <div class="special-card-image">
+                        <img src="images/latte.jpg" alt="Honey Lavender Latte" loading="lazy">
+                        <span class="special-badge">★ signature</span>
+                    </div>
+                    <div class="special-card-content">
+                        <div class="special-card-header">
+                            <h3 class="special-card-title">Honey Lavender Latte</h3>
+                            <span class="special-card-price">$6.50</span>
+                        </div>
+                        <p class="special-card-desc">Local wildflower honey meets dried lavender in our silkiest steamed milk. A gentle hug in a cup.</p>
+                        <span class="special-card-tag">☕ Hot & Iced</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Croissant -->
+                <div class="special-card animate-on-scroll stagger">
+                    <div class="special-card-image">
+                        <img src="images/croissant.jpg" alt="Butter Almond Croissant" loading="lazy">
+                        <span class="special-badge">🥐 fresh baked</span>
+                    </div>
+                    <div class="special-card-content">
+                        <div class="special-card-header">
+                            <h3 class="special-card-title">Butter Almond Croissant</h3>
+                            <span class="special-card-price">$5.25</span>
+                        </div>
+                        <p class="special-card-desc">72-hour laminated dough, toasted almonds, and a whisper of vanilla. Best warm, always flaky.</p>
+                        <span class="special-card-tag">🌿 Made daily</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Matcha -->
+                <div class="special-card animate-on-scroll stagger">
+                    <div class="special-card-image">
+                        <img src="images/matcha.jpg" alt="Oat Matcha Latte" loading="lazy">
+                    </div>
+                    <div class="special-card-content">
+                        <div class="special-card-header">
+                            <h3 class="special-card-title">Oat Matcha Latte</h3>
+                            <span class="special-card-price">$7.00</span>
+                        </div>
+                        <p class="special-card-desc">Ceremonial-grade Uji matcha whisked with creamy oat milk. Earthy, smooth, and impossibly green.</p>
+                        <span class="special-card-tag">🍵 Vegan friendly</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Avocado Toast -->
+                <div class="special-card animate-on-scroll stagger">
+                    <div class="special-card-image">
+                        <img src="images/avocado-toast.jpg" alt="Smashed Avo Toast" loading="lazy">
+                        <span class="special-badge">🌟 popular</span>
+                    </div>
+                    <div class="special-card-content">
+                        <div class="special-card-header">
+                            <h3 class="special-card-title">Smashed Avo Toast</h3>
+                            <span class="special-card-price">$12.50</span>
+                        </div>
+                        <p class="special-card-desc">Sourdough, hand-smashed avocado, soft poached egg, chili flakes, and microgreens. Our brunch hero.</p>
+                        <span class="special-card-tag">🍳 Brunch fav</span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Tiramisu -->
+                <div class="special-card animate-on-scroll stagger">
+                    <div class="special-card-image">
+                        <img src="images/tiramisu.jpg" alt="Classic Tiramisu" loading="lazy">
+                    </div>
+                    <div class="special-card-content">
+                        <div class="special-card-header">
+                            <h3 class="special-card-title">Classic Tiramisu</h3>
+                            <span class="special-card-price">$8.75</span>
+                        </div>
+                        <p class="special-card-desc">Espresso-soaked ladyfingers layered with mascarpone and dusted with Valrhona cocoa. Old-world charm.</p>
+                        <span class="special-card-tag">🍫 House special</span>
+                    </div>
+                </div>
+
+                <!-- Card 6: Cold Brew -->
+                <div class="special-card animate-on-scroll stagger">
+                    <div class="special-card-image">
+                        <img src="images/cold-brew.jpg" alt="Salted Caramel Cold Brew" loading="lazy">
+                        <span class="special-badge">❄️ summer hit</span>
+                    </div>
+                    <div class="special-card-content">
+                        <div class="special-card-header">
+                            <h3 class="special-card-title">Salted Caramel Cold Brew</h3>
+                            <span class="special-card-price">$6.75</span>
+                        </div>
+                        <p class="special-card-desc">24-hour steeped cold brew swirled with house-made salted caramel and a cloud of vanilla cold foam.</p>
+                        <span class="special-card-tag">❄️ Cold & refreshing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  ABOUT / STORY SECTION                              -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-image-wrap animate-on-scroll slide-left">
+                    <img src="images/about.jpg" alt="Our barista crafting latte art" class="about-image" loading="lazy">
+                    <div class="about-image-accent"></div>
+                    <span class="about-image-label">est. 2018</span>
+                </div>
+                <div class="about-content animate-on-scroll slide-right">
+                    <span class="section-label">our story</span>
+                    <h2 class="section-title section-title-left">More Than Just<br>a Coffee Shop</h2>
+                    <p class="about-text">
+                        Ember & Bloom started with a simple idea: what if your neighborhood cafe felt like a friend's living room? 
+                        A place where the barista remembers your name, the pastries are baked before sunrise, and the Wi-Fi password 
+                        is written on a chalkboard next to a doodle of a cat.
+                    </p>
+                    <blockquote class="about-quote">
+                        "We don't just make coffee. We make the best part of your morning."
+                    </blockquote>
+                    <p class="about-text">
+                        Every bean is sourced from small farms we've visited personally. Every recipe is tested obsessively until 
+                        it's just right. And every corner of our space is designed to make you want to stay a little longer.
+                    </p>
+                    <ul class="about-values">
+                        <li>☕ Single-origin, ethically sourced beans</li>
+                        <li>🌿 Seasonal menu that changes with the harvest</li>
+                        <li>🍞 Everything baked in-house, from scratch, daily</li>
+                        <li>💛 A community space, not just a business</li>
+                    </ul>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number" data-target="6">0</span>
+                            <span class="stat-label">Years Brewing</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="12">0</span>
+                            <span class="stat-label">Bean Origins</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="50000">0</span>
+                            <span class="stat-label">Cups Served</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  GALLERY SECTION                                    -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="gallery" id="gallery">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">a peek inside</span>
+                <h2 class="section-title">Our World in Frames</h2>
+                <p class="section-desc">The light, the textures, the little moments — this is what Ember & Bloom feels like.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-item-tall animate-on-scroll stagger" data-index="0">
+                    <img src="images/gallery-interior.jpg" alt="Cozy cafe interior with warm lighting" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-text">Our cozy interior</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll stagger" data-index="1">
+                    <img src="images/latte.jpg" alt="Latte art in a ceramic cup" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-text">Latte art</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll stagger" data-index="2">
+                    <img src="images/gallery-beans.jpg" alt="Freshly roasted coffee beans" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-text">Our beans</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll stagger" data-index="3">
+                    <img src="images/gallery-pastries.jpg" alt="Fresh pastries display" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-text">Baked fresh daily</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-item-wide animate-on-scroll stagger" data-index="4">
+                    <img src="images/gallery-outdoor.jpg" alt="Charming outdoor terrace seating" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-text">Our terrace</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll stagger" data-index="5">
+                    <img src="images/gallery-pourover.jpg" alt="Artisan pour-over coffee" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-text">Pour-over ritual</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  TESTIMONIALS SECTION                               -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">kind words</span>
+                <h2 class="section-title">What Our Guests Say</h2>
+                <p class="section-desc">We're lucky to have some of the warmest, most loyal regulars in the city.</p>
+            </div>
+
+            <div class="testimonials-track">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card animate-on-scroll stagger">
+                    <div class="testimonial-quote-mark">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        This place feels like it was made just for me. The lavender latte is life-changing, and the baristas 
+                        always remember my order. It's my happy place.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SP</div>
+                        <div>
+                            <strong class="testimonial-name">Sarah Patel</strong>
+                            <span class="testimonial-role">Regular since 2020</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card animate-on-scroll stagger">
+                    <div class="testimonial-quote-mark">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        I've been to cafes all over the world, and Ember & Bloom has something special. 
+                        It's the attention to detail — the fresh flowers, the hand-written menu, the way the espresso 
+                        is always perfect.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MK</div>
+                        <div>
+                            <strong class="testimonial-name">Marcus Kim</strong>
+                            <span class="testimonial-role">Food blogger</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card animate-on-scroll stagger">
+                    <div class="testimonial-quote-mark">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        I bring my laptop here every Saturday morning and lose myself in work 
+                        (and croissants). The vibe is perfect — cozy without being stuffy, 
+                        quiet without being lifeless. 10/10.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JR</div>
+                        <div>
+                            <strong class="testimonial-name">Jamie Rivera</strong>
+                            <span class="testimonial-role">Freelance designer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card animate-on-scroll stagger">
+                    <div class="testimonial-quote-mark">"</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        The cold brew here ruined all other cold brews for me. And the tiramisu? 
+                        Don't even get me started. My partner and I come here for date nights now — 
+                        it's that good.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LC</div>
+                        <div>
+                            <strong class="testimonial-name">Laura Chen</strong>
+                            <span class="testimonial-role">Neighborhood local</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots" id="testimonialDots"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  CONTACT / INFO SECTION                             -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">find us</span>
+                <h2 class="section-title">Visit Ember & Bloom</h2>
+                <p class="section-desc">We'd love to see you. Pull up a chair, stay a while.</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Opening Hours -->
+                <div class="contact-card animate-on-scroll stagger">
+                    <h3 class="contact-card-title">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Opening Hours
+                    </h3>
+                    <table class="hours-table" id="hoursTable">
+                        <tr data-day="1"><td>Monday</td><td>7:00 AM – 7:00 PM</td></tr>
+                        <tr data-day="2"><td>Tuesday</td><td>7:00 AM – 7:00 PM</td></tr>
+                        <tr data-day="3"><td>Wednesday</td><td>7:00 AM – 7:00 PM</td></tr>
+                        <tr data-day="4"><td>Thursday</td><td>7:00 AM – 9:00 PM</td></tr>
+                        <tr data-day="5"><td>Friday</td><td>7:00 AM – 9:00 PM</td></tr>
+                        <tr data-day="6"><td>Saturday</td><td>8:00 AM – 10:00 PM</td></tr>
+                        <tr data-day="0"><td>Sunday</td><td>8:00 AM – 6:00 PM</td></tr>
+                    </table>
+                    <p class="hours-note">☀️ Extended summer terrace hours on weekends!</p>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="contact-card animate-on-scroll stagger">
+                    <h3 class="contact-card-title">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Get in Touch
+                    </h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <div>
+                                <strong>Address</strong>
+                                <p>142 Maple Street, Brookside<br>Portland, OR 97201</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <div>
+                                <strong>Phone</strong>
+                                <p><a href="tel:+15035551234">(503) 555-1234</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <div>
+                                <strong>Email</strong>
+                                <p><a href="mailto:hello@emberandbloom.cafe">hello@emberandbloom.cafe</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="contact-card contact-card-map animate-on-scroll stagger">
+                    <h3 class="contact-card-title">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                        Find Us on the Map
+                    </h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.5!2d-122.6784!3d45.5152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDMwJzU0LjciTiAxMjLCsDQwJzQyLjIiVw!5e0!3m2!1sen!2sus!4v1" 
+                            width="100%" 
+                            height="280" 
+                            style="border:0; border-radius: var(--radius-md);" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Ember & Bloom location on Google Maps">
+                        </iframe>
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="map-directions-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  FOOTER                                             -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">
+                        <span class="logo-icon">☕</span>
+                        <span class="logo-text">Ember <span class="logo-ampersand">&</span> Bloom</span>
+                    </a>
+                    <p class="footer-about">
+                        A cozy artisan cafe in the heart of Brookside. Come for the coffee, stay for the warmth.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#specials">Our Menu</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- More Info -->
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">More Info</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Private Events</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Catering</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-newsletter">
+                    <h4 class="footer-heading">Stay in the Loop</h4>
+                    <p class="footer-newsletter-text">
+                        Get early access to seasonal specials, events, and a free drink on your birthday. 🎂
+                    </p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="newsletter-input-wrap">
+                            <input type="email" placeholder="your@email.com" class="newsletter-input" id="newsletterEmail" required autocomplete="email">
+                            <button type="submit" class="newsletter-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ember & Bloom. All rights reserved. Made with ☕ and love.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  LIGHTBOX                                           -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close lightbox">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" aria-label="Next image">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  BACK TO TOP                                        -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  MOBILE QUICK ACTION BAR                            -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div class="mobile-action-bar" id="mobileActionBar">
+        <a href="#specials" class="mobile-action">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            <span>Menu</span>
+        </a>
+        <a href="tel:+15035551234" class="mobile-action">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Call</span>
+        </a>
+        <a href="https://maps.google.com" target="_blank" rel="noopener" class="mobile-action">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Directions</span>
+        </a>
+        <a href="#contact" class="mobile-action mobile-action-cta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Reserve</span>
+        </a>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  TOAST NOTIFICATION                                 -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">✉️</div>
+        <div class="toast-content">
+            <strong>You're in!</strong>
+            <p>Welcome to the Ember & Bloom family. Check your inbox for a warm hello.</p>
+        </div>
+        <button class="toast-close" aria-label="Close notification">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

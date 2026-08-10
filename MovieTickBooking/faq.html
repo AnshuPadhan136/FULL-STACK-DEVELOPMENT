@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - CineBook</title>
+    <meta name="description" content="Frequently Asked Questions about CineBook">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .page-header { text-align: center; padding: 120px 20px 40px; background: linear-gradient(to bottom, var(--primary-color-alpha), transparent); }
+        .page-title { font-size: 2.5rem; font-family: 'Outfit', sans-serif; margin-bottom: 10px; }
+        .page-subtitle { color: var(--text-muted); }
+        
+        .faq-container { max-width: 800px; margin: 0 auto 80px; padding: 0 20px; }
+        
+        .search-box { position: relative; margin-bottom: 40px; }
+        .search-box input { width: 100%; padding: 15px 20px 15px 50px; border-radius: 30px; background: var(--glass-bg); border: 1px solid var(--border-color); color: var(--text-color); font-size: 1.1rem; outline: none; transition: all 0.3s; box-shadow: var(--shadow-sm); }
+        .search-box input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px var(--primary-color-alpha); }
+        .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
+        
+        .accordion { display: flex; flex-direction: column; gap: 15px; }
+        .accordion-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; transition: all 0.3s; }
+        .accordion-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: transparent; transition: background 0.3s; }
+        .accordion-header:hover { background: rgba(255, 255, 255, 0.02); }
+        .accordion-title { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 500; margin: 0; padding-right: 20px; }
+        .accordion-icon { color: var(--primary-color); transition: transform 0.3s ease; }
+        .accordion-item.active { border-color: var(--primary-color); box-shadow: var(--shadow-sm); }
+        .accordion-item.active .accordion-header { border-bottom: 1px solid var(--border-color); }
+        .accordion-item.active .accordion-icon { transform: rotate(180deg); }
+        
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-body { padding: 20px; color: var(--text-muted); line-height: 1.6; }
+        
+        .still-help { text-align: center; margin-top: 60px; padding: 40px; background: var(--glass-bg); border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
+        .still-help h3 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 10px; }
+        .still-help p { color: var(--text-muted); margin-bottom: 20px; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen"><div class="spinner"></div><p>Loading...</p></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="page-header" data-animate="fade-in">
+        <h1 class="page-title">Frequently Asked Questions</h1>
+        <p class="page-subtitle">Find answers to common questions about booking, payments, and more.</p>
+    </header>
+    
+    <main class="faq-container" data-animate="fade-up">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="faqSearch" placeholder="Search questions...">
+        </div>
+        
+        <div class="accordion" id="faqAccordion">
+            <!-- Rendered via JS -->
+        </div>
+        
+        <div class="still-help">
+            <h3>Still have questions?</h3>
+            <p>Can't find the answer you're looking for? Please chat to our friendly team.</p>
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><a href="movies.html">Movies</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="faq.html">Help Center</a><a href="contact.html">Feedback</a><a href="#">Terms of Service</a><a href="#">Privacy Policy</a></div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4><p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm"><input type="email" placeholder="Your email" required><button type="submit"><i class="fas fa-paper-plane"></i></button></form>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordion = document.getElementById('faqAccordion');
+            const searchInput = document.getElementById('faqSearch');
+            
+            // Fallback FAQ data if not in window
+            const faqs = window.FAQ_DATA || [
+                { q: "How do I book a ticket?", a: "To book a ticket, simply log in to your account, browse the movies, select your preferred movie, choose a theater and showtime, select your seats, and proceed to payment." },
+                { q: "Can I cancel my ticket?", a: "Yes, tickets can be cancelled up to 2 hours before the showtime. A small cancellation fee may apply depending on the theater's policy." },
+                { q: "Do I need to print my ticket?", a: "No, you don't need to print your ticket. You can simply show the M-ticket or QR code on your mobile device at the cinema entrance." },
+                { q: "What payment methods are accepted?", a: "We accept all major credit/debit cards, net banking, UPI, and popular mobile wallets." },
+                { q: "Is there a convenience fee?", a: "A nominal convenience fee is charged on online bookings to cover the platform's operational costs." }
+            ];
+            
+            let html = '';
+            faqs.forEach((faq, index) => {
+                html += `
+                    <div class="accordion-item" data-index="${index}">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">${faq.q}</h3>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">${faq.a}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            accordion.innerHTML = html;
+            
+            // Accordion logic
+            const items = document.querySelectorAll('.accordion-item');
+            items.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                header.addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.accordion-item.active');
+                    if(currentlyActive && currentlyActive !== item) {
+                        currentlyActive.classList.remove('active');
+                        currentlyActive.querySelector('.accordion-content').style.maxHeight = null;
+                    }
+                    
+                    item.classList.toggle('active');
+                    const content = item.querySelector('.accordion-content');
+                    if(item.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+            
+            // Search logic
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if(text.includes(term)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

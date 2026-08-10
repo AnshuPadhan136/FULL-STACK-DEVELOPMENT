@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats - CineBook</title>
+    <meta name="description" content="Select your preferred seats.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/seats.css">
+    <style>
+        .booking-progress { display: flex; justify-content: center; gap: 8px; margin: 2rem 0; color: var(--primary); }
+        .progress-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--primary); }
+        .progress-dot.active { background: var(--primary); }
+        
+        .movie-info-bar { display: flex; align-items: center; gap: 1rem; background: var(--glass-bg); padding: 1rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid var(--glass-border); }
+        .movie-info-bar img { width: 60px; height: 90px; object-fit: cover; border-radius: 8px; }
+        .movie-info-bar h2 { margin: 0; font-size: 1.5rem; }
+        .movie-info-bar p { margin: 0.2rem 0 0 0; color: var(--text-muted); font-size: 0.9rem; }
+        
+        .layout { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+        @media(max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+        
+        .screen-indicator { background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, transparent 100%); border-top-left-radius: 50% 10px; border-top-right-radius: 50% 10px; height: 40px; margin-bottom: 3rem; position: relative; text-align: center; color: var(--text-muted); padding-top: 10px; font-weight: 500; letter-spacing: 2px; }
+        
+        .seat-map-container { overflow-x: auto; padding: 1rem 0; text-align: center; }
+        .seat-row { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 0.8rem; align-items: center; }
+        .row-label { width: 30px; font-weight: bold; color: var(--text-muted); }
+        
+        .seat { width: 35px; height: 35px; border-radius: 8px 8px 4px 4px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; transition: all 0.2s; position: relative; }
+        .seat::after { content: ''; position: absolute; bottom: 0; left: 10%; width: 80%; height: 4px; border-radius: 2px; background: rgba(0,0,0,0.3); }
+        
+        .seat--vip { background: linear-gradient(135deg, #ffd700, #b8860b); color: #000; }
+        .seat--premium { background: linear-gradient(135deg, #9370db, #4b0082); color: #fff; }
+        .seat--regular { background: linear-gradient(135deg, #20b2aa, #008080); color: #fff; }
+        
+        .seat--booked { background: #444; color: #888; cursor: not-allowed; }
+        .seat--selected { transform: scale(1.1); box-shadow: 0 0 10px rgba(255,255,255,0.5); border: 2px solid #fff; }
+        .seat:hover:not(.seat--booked) { transform: scale(1.1); }
+        
+        .gap { width: 20px; } /* Aisle */
+        
+        .legend { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        .legend-box { width: 20px; height: 20px; border-radius: 4px; }
+        
+        .booking-summary { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; position: sticky; top: 100px; }
+        .summary-header { border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; margin-bottom: 1rem; }
+        .summary-details { margin-bottom: 1.5rem; }
+        .summary-details p { margin: 0.5rem 0; display: flex; justify-content: space-between; }
+        .selected-seats-list { margin-top: 1rem; min-height: 50px; }
+        .seat-badge { display: inline-block; padding: 0.2rem 0.5rem; background: rgba(var(--primary-rgb), 0.2); border: 1px solid var(--primary); border-radius: 4px; margin: 0.2rem; font-size: 0.8rem; }
+        
+        .price-breakdown { border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-bottom: 1.5rem; }
+        .price-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .price-total { display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--glass-border); font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        
+        .btn-ghost { width: 100%; padding: 0.75rem; background: transparent; border: 1px solid var(--text); color: var(--text); border-radius: 8px; margin-bottom: 0.5rem; cursor: pointer; transition: all 0.3s; }
+        .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+        
+        .btn-primary { width: 100%; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; }
+        .btn-primary:hover:not(:disabled) { background: var(--primary-dark, #e60000); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen"><div class="spinner"></div><p>Loading...</p></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container" style="padding-top: 100px; min-height: 80vh;">
+        <div class="breadcrumbs" style="margin-bottom: 1rem; color: var(--text-muted);">
+            <a href="index.html">Home</a> &gt; <a href="movies.html">Movies</a> &gt; <span id="bcMovieTitle">Movie Title</span> &gt; <span id="bcTheaterName">Theater</span> &gt; <span>Seats</span>
+        </div>
+        
+        <div id="movieInfoContainer"></div>
+        
+        <div class="booking-progress">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot active"></div>
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
+        
+        <div class="layout">
+            <div class="main-content">
+                <div class="seat-map-container">
+                    <div class="screen-indicator">SCREEN</div>
+                    <div id="seatMap" style="display:inline-block;">
+                        <!-- Seat rows injected here -->
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-box seat--vip"></div> VIP (₹350)</div>
+                        <div class="legend-item"><div class="legend-box seat--premium"></div> Premium (₹250)</div>
+                        <div class="legend-item"><div class="legend-box seat--regular"></div> Regular (₹150)</div>
+                        <div class="legend-item"><div class="legend-box seat--booked"></div> Booked</div>
+                        <div class="legend-item"><div class="legend-box seat--selected" style="background:#fff"></div> Selected</div>
+                    </div>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="booking-summary">
+                    <div class="summary-header">
+                        <h3 id="sumMovieTitle">Movie Title</h3>
+                        <p id="sumTheaterName" class="text-muted" style="font-size:0.9rem;">Theater Name</p>
+                    </div>
+                    <div class="summary-details">
+                        <p><span>Date:</span> <strong id="sumDate">--</strong></p>
+                        <p><span>Time:</span> <strong id="sumTime">--</strong></p>
+                        <div style="margin-top: 1rem;">
+                            <span>Seats Selected: <strong id="seatCountText">0/8</strong></span>
+                            <div class="selected-seats-list" id="selectedSeatsList">
+                                <span class="text-muted" style="font-size:0.9rem;">No seats selected</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price-breakdown" id="priceBreakdown">
+                        <!-- Prices injected here -->
+                    </div>
+                    <div class="price-total">
+                        <span>Total Amount</span>
+                        <span id="grandTotal">₹0</span>
+                    </div>
+                    
+                    <button class="btn-ghost" id="btnReset">Reset Selection</button>
+                    <button class="btn-primary" id="btnProceed" disabled>Proceed to Checkout</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><a href="movies.html">Movies</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="faq.html">Help Center</a><a href="contact.html">Feedback</a><a href="#">Terms of Service</a><a href="#">Privacy Policy</a></div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4><p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm"><input type="email" placeholder="Your email" required><button type="submit"><i class="fas fa-paper-plane"></i></button></form>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/seats.js"></script>
+</body>
+</html>

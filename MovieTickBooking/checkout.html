@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - CineBook</title>
+    <meta name="description" content="Complete your booking.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <style>
+        .booking-progress { display: flex; justify-content: center; gap: 8px; margin: 2rem 0; color: var(--primary); }
+        .progress-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--primary); }
+        .progress-dot.active { background: var(--primary); }
+        
+        .layout { display: grid; grid-template-columns: 3fr 2fr; gap: 2rem; margin-bottom: 3rem; }
+        @media(max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+        
+        .checkout-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .checkout-card h3 { margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; }
+        
+        .movie-summary { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .movie-summary img { width: 100px; height: 150px; object-fit: cover; border-radius: 8px; }
+        
+        .detail-row { display: flex; margin-bottom: 0.5rem; }
+        .detail-row span:first-child { width: 120px; color: var(--text-muted); font-weight: 500; }
+        
+        .timer-box { background: rgba(var(--primary-rgb), 0.1); border: 1px solid var(--primary); padding: 1rem; border-radius: 8px; text-align: center; margin-bottom: 1.5rem; }
+        .timer-box h4 { margin: 0 0 0.5rem 0; color: var(--primary); }
+        .timer { font-size: 2rem; font-weight: 800; font-family: monospace; }
+        .timer.danger { color: #ff4444; animation: pulse 1s infinite; }
+        
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        
+        .price-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .price-total { display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--glass-border); font-size: 1.3rem; font-weight: bold; color: var(--primary); }
+        
+        .discount-row { color: #00c851; }
+        
+        .coupon-box { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .coupon-box input { flex: 1; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); color: white; }
+        .coupon-box button { padding: 0.75rem 1.5rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        
+        .btn-confirm { width: 100%; padding: 1.25rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 800; font-size: 1.2rem; cursor: pointer; transition: all 0.3s; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-confirm:hover { background: var(--primary-dark, #e60000); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.3); }
+        
+        .terms { font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; display: flex; gap: 0.5rem; align-items: flex-start; }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen"><div class="spinner"></div><p>Loading...</p></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container" style="padding-top: 100px; min-height: 80vh;">
+        <div class="breadcrumbs" style="margin-bottom: 1rem; color: var(--text-muted);">
+            <a href="index.html">Home</a> &gt; <a href="movies.html">Movies</a> &gt; <span id="bcMovieTitle">Movie Title</span> &gt; <span>Checkout</span>
+        </div>
+        
+        <div class="booking-progress">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot active"></div>
+            <div class="progress-dot active"></div>
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+        </div>
+        
+        <div class="layout">
+            <div class="main-content">
+                <div class="checkout-card data-animate">
+                    <h3>Booking Details</h3>
+                    <div class="movie-summary">
+                        <img id="chkPoster" src="" alt="">
+                        <div>
+                            <h2 id="chkMovieTitle" style="margin:0 0 0.5rem 0;">--</h2>
+                            <p id="chkGenre" class="text-muted" style="margin:0 0 1rem 0;">--</p>
+                            
+                            <div class="detail-row"><span>Theater:</span> <strong id="chkTheater">--</strong></div>
+                            <div class="detail-row"><span>Date:</span> <strong id="chkDate">--</strong></div>
+                            <div class="detail-row"><span>Time:</span> <strong id="chkTime">--</strong></div>
+                            <div class="detail-row"><span>Seats:</span> <strong id="chkSeats">--</strong></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="checkout-card data-animate" style="animation-delay: 0.1s;">
+                    <h3>Have a Promo Code?</h3>
+                    <div class="coupon-box">
+                        <input type="text" id="couponCode" placeholder="Enter FIRST50, WKND3, etc.">
+                        <button id="btnApplyCoupon">Apply</button>
+                    </div>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="checkout-card data-animate" style="position: sticky; top: 100px;">
+                    <div class="timer-box">
+                        <h4>Complete booking within</h4>
+                        <div class="timer" id="countdownTimer">05:00</div>
+                    </div>
+                    
+                    <h3>Payment Summary</h3>
+                    <div id="paymentBreakdown">
+                        <!-- Injected -->
+                    </div>
+                    
+                    <label class="terms">
+                        <input type="checkbox" id="termsCheck">
+                        <span>I agree to the Terms & Conditions and acknowledge that tickets are non-refundable.</span>
+                    </label>
+                    
+                    <button class="btn-confirm" id="btnConfirm">Confirm Booking</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><a href="movies.html">Movies</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="faq.html">Help Center</a><a href="contact.html">Feedback</a><a href="#">Terms of Service</a><a href="#">Privacy Policy</a></div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4><p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm"><input type="email" placeholder="Your email" required><button type="submit"><i class="fas fa-paper-plane"></i></button></form>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheria — The Premium Trivia Experience</title>
+    <meta name="description" content="Embark on an elegant journey of knowledge with Aetheria, a premium trivia experience.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Classy Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elegant Glows -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <span class="brand-logo">Æ</span>
+                <h1 class="brand-name">Aetheria</h1>
+            </div>
+            <div class="header-actions">
+                <button id="sound-toggle" class="icon-btn" title="Toggle Sound">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Card Container -->
+        <main class="main-card">
+            <!-- Screen 1: Start Screen -->
+            <section id="start-screen" class="screen active">
+                <div class="start-content">
+                    <span class="subtitle">A Journey of Mind & Intellect</span>
+                    <h2 class="title-main">Test Your Knowledge</h2>
+                    <p class="description">
+                        Welcome to Aetheria. Prepare to challenge your intellect across ten carefully curated questions spanning history, science, literature, art, and philosophy. 
+                    </p>
+                    
+                    <div class="rules-card">
+                        <h3><i class="fas fa-scroll"></i> Rules of Engagement</h3>
+                        <ul>
+                            <li><i class="fas fa-circle-notch text-gold"></i> Ten distinct questions will be presented sequentially.</li>
+                            <li><i class="fas fa-circle-notch text-gold"></i> You have <strong>20 seconds</strong> to answer each question.</li>
+                            <li><i class="fas fa-circle-notch text-gold"></i> Correct answers earn points based on speed.</li>
+                            <li><i class="fas fa-circle-notch text-gold"></i> Sound synthesis will guide your journey (optional).</li>
+                        </ul>
+                    </div>
+
+                    <button id="btn-start" class="btn btn-primary">
+                        <span>Begin the Journey</span>
+                        <i class="fas fa-compass"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Screen 2: Quiz Screen -->
+            <section id="quiz-screen" class="screen">
+                <!-- Progress Header -->
+                <div class="quiz-progress-bar">
+                    <div class="progress-details">
+                        <span id="question-number">Question 1 of 10</span>
+                        <span id="score-display">Score: 0</span>
+                    </div>
+                    <div class="progress-track">
+                        <div id="progress-fill" class="progress-fill" style="width: 10%;"></div>
+                    </div>
+                </div>
+
+                <!-- Timer Indicator -->
+                <div class="timer-container">
+                    <div class="timer-info">
+                        <i class="far fa-clock"></i>
+                        <span id="timer-text">20s</span>
+                    </div>
+                    <div class="timer-track">
+                        <div id="timer-fill" class="timer-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Question -->
+                <div class="question-container">
+                    <h3 id="question-text">Which Renaissance master painted the ceiling of the Sistine Chapel?</h3>
+                </div>
+
+                <!-- Options -->
+                <div id="options-grid" class="options-grid">
+                    <button class="option-btn" data-index="0">
+                        <span class="option-marker">A</span>
+                        <span class="option-content">Michelangelo</span>
+                        <span class="option-status-icon"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="option-btn" data-index="1">
+                        <span class="option-marker">B</span>
+                        <span class="option-content">Leonardo da Vinci</span>
+                        <span class="option-status-icon"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="option-btn" data-index="2">
+                        <span class="option-marker">C</span>
+                        <span class="option-content">Raphael</span>
+                        <span class="option-status-icon"><i class="fas fa-check"></i></span>
+                    </button>
+                    <button class="option-btn" data-index="3">
+                        <span class="option-marker">D</span>
+                        <span class="option-content">Sandro Botticelli</span>
+                        <span class="option-status-icon"><i class="fas fa-check"></i></span>
+                    </button>
+                </div>
+
+                <!-- Question Feedback Overlay / Message -->
+                <div id="feedback-panel" class="feedback-panel hidden">
+                    <div class="feedback-content">
+                        <span id="feedback-icon-container"><i class="fas fa-check-circle"></i></span>
+                        <p id="feedback-msg">Correct!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen 3: Results Screen -->
+            <section id="results-screen" class="screen">
+                <div class="results-content">
+                    <span class="subtitle">Journey Completed</span>
+                    <h2 class="title-main">Your Assessment</h2>
+
+                    <!-- Animated Circular Score -->
+                    <div class="score-circle-container">
+                        <svg class="score-ring" width="160" height="160">
+                            <circle class="score-ring-bg" cx="80" cy="80" r="70" stroke-width="8" fill="transparent"/>
+                            <circle class="score-ring-progress" id="score-circle-fill" cx="80" cy="80" r="70" stroke-width="8" fill="transparent" stroke-dasharray="439.8" stroke-dashoffset="439.8"/>
+                        </svg>
+                        <div class="score-text-container">
+                            <span id="final-percentage">80%</span>
+                            <span id="final-raw-score">8/10 Correct</span>
+                        </div>
+                    </div>
+
+                    <!-- Distinction Rank -->
+                    <div class="rank-container">
+                        <span class="rank-label">Distinction Earned</span>
+                        <h3 id="rank-title">The Grand Scholar</h3>
+                        <p id="rank-description">Your mastery of diverse domains is exemplary. The fire of curiosity burns bright in your mind.</p>
+                    </div>
+
+                    <!-- Stats Panel -->
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-val" id="stat-points">8,450</span>
+                            <span class="stat-lbl">Total Points</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-val" id="stat-speed">2.4s</span>
+                            <span class="stat-lbl">Avg Response Time</span>
+                        </div>
+                    </div>
+
+                    <!-- Review Section Accordion -->
+                    <div class="review-wrapper">
+                        <button id="toggle-review-btn" class="btn btn-outline">
+                            <span>Review Your Answers</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div id="review-container" class="review-container hidden">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="actions-grid">
+                        <button id="btn-restart" class="btn btn-primary">
+                            <span>Begin Anew</span>
+                            <i class="fas fa-redo"></i>
+                        </button>
+                        <button id="btn-share" class="btn btn-secondary">
+                            <span>Copy Result Certificate</span>
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Designed with elegance &bull; Powered by Aetheria Engine</p>
+        </footer>
+    </div>
+
+    <!-- Main Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>

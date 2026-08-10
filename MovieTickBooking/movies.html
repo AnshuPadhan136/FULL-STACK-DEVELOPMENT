@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies - CineBook</title>
+    <meta name="description" content="Browse all movies playing now and coming soon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cards.css">
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link active">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-container container pt-navbar">
+        <div class="page-header">
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Movies</span>
+            </div>
+            <h1>Explore Movies</h1>
+        </div>
+
+        <div class="search-section-small mb-4">
+            <div class="search-container glass-card">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="moviesSearch" placeholder="Search movies by title, genre, or language..." autocomplete="off">
+            </div>
+        </div>
+
+        <div class="movies-layout">
+            <!-- Sidebar Filters -->
+            <aside class="filters-sidebar glass-card">
+                <div class="filters-header">
+                    <h3>Filters</h3>
+                    <button class="btn-text" id="clearFilters">Clear All</button>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>Status</h4>
+                    <div class="radio-group">
+                        <label><input type="radio" name="status" value="all" checked> All Movies</label>
+                        <label><input type="radio" name="status" value="now_showing"> Now Showing</label>
+                        <label><input type="radio" name="status" value="coming_soon"> Coming Soon</label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Genres</h4>
+                    <div class="checkbox-group" id="genreFilters">
+                        <!-- Populated by filters.js -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Language</h4>
+                    <select id="languageFilter" class="form-control">
+                        <option value="">All Languages</option>
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Korean">Korean</option>
+                        <option value="French">French</option>
+                        <option value="Japanese">Japanese</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Rating</h4>
+                    <div class="radio-group row">
+                        <label class="rating-btn"><input type="radio" name="rating" value=""> All</label>
+                        <label class="rating-btn"><input type="radio" name="rating" value="7"> 7+ <i class="fas fa-star"></i></label>
+                        <label class="rating-btn"><input type="radio" name="rating" value="8"> 8+ <i class="fas fa-star"></i></label>
+                        <label class="rating-btn"><input type="radio" name="rating" value="9"> 9+ <i class="fas fa-star"></i></label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Movie Grid -->
+            <div class="movies-content">
+                <div class="results-meta">
+                    <p>Showing <span id="resultsCount">0</span> movies</p>
+                </div>
+                <div class="movie-grid" id="filteredMoviesGrid">
+                    <!-- Cards injected by filters.js -->
+                </div>
+                <div id="noResults" class="no-results" style="display: none;">
+                    <i class="fas fa-film fa-3x"></i>
+                    <h3>No movies found</h3>
+                    <p>Try adjusting your filters or search query.</p>
+                    <button class="btn btn-primary mt-3" onclick="document.getElementById('clearFilters').click()">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Trailer Modal -->
+    <div class="trailer-modal" id="trailerModal">
+        <div class="trailer-content">
+            <button class="close-trailer" id="closeTrailer"><i class="fas fa-times"></i></button>
+            <div class="iframe-container">
+                <iframe id="trailerIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="movies.html">Movies</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="faq.html">Help Center</a>
+                    <a href="contact.html">Feedback</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script src="js/search.js"></script>
+    <script src="js/movies.js"></script>
+    <script src="js/filters.js"></script>
+</body>
+</html>

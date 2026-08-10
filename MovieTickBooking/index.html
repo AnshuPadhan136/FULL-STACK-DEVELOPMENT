@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - CineBook</title>
+    <meta name="description" content="Book movie tickets online with CineBook. Discover the latest movies playing in theaters near you.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/cards.css">
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Banner Slider -->
+        <section class="hero-slider" id="heroSlider" data-animate="fade-in">
+            <div class="slider-container" id="sliderContainer">
+                <!-- Slides will be dynamically injected here by slider.js -->
+            </div>
+            <button class="slider-btn prev" id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next" id="sliderNext"><i class="fas fa-chevron-right"></i></button>
+            <div class="slider-dots" id="sliderDots">
+                <!-- Dots will be dynamically injected here -->
+            </div>
+        </section>
+
+        <!-- Search Bar Section -->
+        <section class="search-section container" data-animate="slide-up">
+            <div class="search-container glass-card">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="mainSearch" placeholder="Search for movies, theaters, genres..." autocomplete="off">
+                <div class="search-dropdown" id="searchDropdown"></div>
+            </div>
+        </section>
+
+        <!-- Category Chips -->
+        <section class="categories-section container" data-animate="fade-in">
+            <div class="category-chips" id="categoryChips">
+                <a href="movies.html?genre=Action" class="chip">Action</a>
+                <a href="movies.html?genre=Drama" class="chip">Drama</a>
+                <a href="movies.html?genre=Sci-Fi" class="chip">Sci-Fi</a>
+                <a href="movies.html?genre=Romance" class="chip">Romance</a>
+                <a href="movies.html?genre=Thriller" class="chip">Thriller</a>
+                <a href="movies.html?genre=Fantasy" class="chip">Fantasy</a>
+            </div>
+        </section>
+
+        <!-- Now Showing -->
+        <section class="now-showing-section container" data-animate="slide-up">
+            <div class="section-header">
+                <h2>Now Showing</h2>
+                <a href="movies.html?status=now_showing" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="movie-grid" id="nowShowingGrid">
+                <!-- Cards injected by movies.js -->
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section class="offers-section container" data-animate="fade-in">
+            <div class="section-header">
+                <h2>Exclusive Offers</h2>
+            </div>
+            <div class="offers-grid">
+                <div class="offer-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="offer-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <h3>Buy 1 Get 1 Free</h3>
+                    <p>On all weekend shows</p>
+                    <div class="promo-badge">WEEKEND24</div>
+                </div>
+                <div class="offer-card" style="background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);">
+                    <div class="offer-icon"><i class="fas fa-popcorn"></i></div>
+                    <h3>Free Snacks Combo</h3>
+                    <p>With premium seats</p>
+                    <div class="promo-badge">SNACKY</div>
+                </div>
+                <div class="offer-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="offer-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>20% Cashback</h3>
+                    <p>Via CinePay Wallet</p>
+                    <div class="promo-badge">PAY20</div>
+                </div>
+                <div class="offer-card" style="background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);">
+                    <div class="offer-icon"><i class="fas fa-gift"></i></div>
+                    <h3>First Booking</h3>
+                    <p>Flat 50% off for new users</p>
+                    <div class="promo-badge">WELCOME50</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon -->
+        <section class="coming-soon-section container" data-animate="slide-up">
+            <div class="section-header">
+                <h2>Coming Soon</h2>
+                <a href="movies.html?status=coming_soon" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="movie-grid" id="comingSoonGrid">
+                <!-- Cards injected by movies.js -->
+            </div>
+        </section>
+
+        <!-- Popular Theaters -->
+        <section class="theaters-section container" data-animate="slide-up">
+            <div class="section-header">
+                <h2>Popular Theaters</h2>
+            </div>
+            <div class="theater-grid">
+                <div class="theater-card glass-card">
+                    <div class="theater-icon"><i class="fas fa-building"></i></div>
+                    <div class="theater-info">
+                        <h3>CineStar IMAX</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Downtown Mall, NY</p>
+                        <div class="amenities">
+                            <span class="tag">IMAX</span>
+                            <span class="tag">Atmos</span>
+                        </div>
+                    </div>
+                    <a href="theaters.html?id=1" class="btn btn-outline">View Shows</a>
+                </div>
+                <div class="theater-card glass-card">
+                    <div class="theater-icon"><i class="fas fa-building"></i></div>
+                    <div class="theater-info">
+                        <h3>Galaxy Plex</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Westfield Center</p>
+                        <div class="amenities">
+                            <span class="tag">4DX</span>
+                            <span class="tag">Food</span>
+                        </div>
+                    </div>
+                    <a href="theaters.html?id=2" class="btn btn-outline">View Shows</a>
+                </div>
+                <!-- More hardcoded or injected theaters could go here, just showing 2 as requested "Grid of 6", let's make 6 -->
+                <div class="theater-card glass-card">
+                    <div class="theater-icon"><i class="fas fa-building"></i></div>
+                    <div class="theater-info">
+                        <h3>Starlight Cinema</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Uptown Avenue</p>
+                        <div class="amenities">
+                            <span class="tag">VIP</span>
+                            <span class="tag">Dolby</span>
+                        </div>
+                    </div>
+                    <a href="theaters.html?id=3" class="btn btn-outline">View Shows</a>
+                </div>
+                <div class="theater-card glass-card">
+                    <div class="theater-icon"><i class="fas fa-building"></i></div>
+                    <div class="theater-info">
+                        <h3>Grand Theater</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Heritage Square</p>
+                        <div class="amenities">
+                            <span class="tag">Classic</span>
+                        </div>
+                    </div>
+                    <a href="theaters.html?id=4" class="btn btn-outline">View Shows</a>
+                </div>
+                <div class="theater-card glass-card">
+                    <div class="theater-icon"><i class="fas fa-building"></i></div>
+                    <div class="theater-info">
+                        <h3>Metro Max</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Central Station</p>
+                        <div class="amenities">
+                            <span class="tag">3D</span>
+                            <span class="tag">Laser</span>
+                        </div>
+                    </div>
+                    <a href="theaters.html?id=5" class="btn btn-outline">View Shows</a>
+                </div>
+                <div class="theater-card glass-card">
+                    <div class="theater-icon"><i class="fas fa-building"></i></div>
+                    <div class="theater-info">
+                        <h3>Silver Screen</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> North Point</p>
+                        <div class="amenities">
+                            <span class="tag">Atmos</span>
+                            <span class="tag">Recliners</span>
+                        </div>
+                    </div>
+                    <a href="theaters.html?id=6" class="btn btn-outline">View Shows</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section container" data-animate="fade-in">
+            <div class="section-header">
+                <h2>What Moviegoers Say</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">JD</div>
+                        <div>
+                            <h4>John Doe</h4>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p>"Easiest booking experience ever! The seat selection is intuitive and fast."</p>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-header">
+                        <div class="avatar" style="background: var(--secondary)">SM</div>
+                        <div>
+                            <h4>Sarah M.</h4>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        </div>
+                    </div>
+                    <p>"Love the trailer integrations and personalized recommendations."</p>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-header">
+                        <div class="avatar" style="background: var(--accent)">RT</div>
+                        <div>
+                            <h4>Robert T.</h4>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p>"Great UI, especially in dark mode. The offers are totally worth it."</p>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="testimonial-header">
+                        <div class="avatar" style="background: var(--success)">AK</div>
+                        <div>
+                            <h4>Anna K.</h4>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p>"Smooth checkout and instant tickets. Will use this every time."</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Trailer Modal -->
+    <div class="trailer-modal" id="trailerModal">
+        <div class="trailer-content">
+            <button class="close-trailer" id="closeTrailer"><i class="fas fa-times"></i></button>
+            <div class="iframe-container">
+                <iframe id="trailerIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="movies.html">Movies</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="faq.html">Help Center</a>
+                    <a href="contact.html">Feedback</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script src="js/search.js"></script>
+    <script src="js/movies.js"></script>
+    <script src="js/slider.js"></script>
+</body>
+</html>

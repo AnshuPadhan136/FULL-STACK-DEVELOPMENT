@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - CineBook</title>
+    <meta name="description" content="Your CineBook Profile">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <style>
+        .profile-container { max-width: 1200px; margin: 120px auto 60px; padding: 0 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        @media (max-width: 768px) { .profile-container { grid-template-columns: 1fr; } }
+        .sidebar { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 30px 20px; text-align: center; height: fit-content; }
+        .avatar-circle { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 700; color: white; margin: 0 auto 20px; box-shadow: var(--shadow-lg); }
+        .sidebar-name { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 5px; }
+        .sidebar-email { color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem; }
+        .sidebar-date { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; padding: 5px 15px; background: var(--card-bg); border-radius: 20px; display: inline-block; }
+        .sidebar-stats { display: flex; justify-content: space-around; margin-bottom: 25px; padding: 15px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .stat-item { display: flex; flex-direction: column; align-items: center; }
+        .stat-val { font-size: 1.25rem; font-weight: 700; color: var(--primary-color); }
+        .stat-lbl { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .sidebar-actions { display: flex; flex-direction: column; gap: 10px; }
+        .btn-logout { background: transparent; border: 1px solid #ef4444; color: #ef4444; }
+        .btn-logout:hover { background: #ef4444; color: white; }
+        
+        .main-content { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 30px; }
+        .tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 30px; overflow-x: auto; }
+        .tab-btn { background: none; border: none; padding: 10px 15px; font-size: 1rem; color: var(--text-muted); font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.3s; white-space: nowrap; }
+        .tab-btn:hover { color: var(--text-color); }
+        .tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-muted); }
+        .form-group input { width: 100%; padding: 12px; border-radius: var(--radius-md); background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); color: var(--text-color); font-family: 'Inter', sans-serif; outline: none; }
+        .form-group input:focus { border-color: var(--primary-color); }
+        .btn-save { margin-top: 20px; padding: 12px 30px; }
+        
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .empty-state { text-align: center; padding: 50px 20px; color: var(--text-muted); }
+        .empty-state i { font-size: 3rem; margin-bottom: 15px; color: var(--border-color); }
+        .empty-state p { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen"><div class="spinner"></div><p>Loading...</p></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="profile-container" data-animate="fade-up">
+        <aside class="sidebar">
+            <div class="avatar-circle" id="userInitials">U</div>
+            <h2 class="sidebar-name" id="userNameDisplay">User Name</h2>
+            <p class="sidebar-email" id="userEmailDisplay">user@example.com</p>
+            <div class="sidebar-date"><i class="fas fa-calendar-alt"></i> Member since <span id="userJoinDate">2023</span></div>
+            
+            <div class="sidebar-stats">
+                <div class="stat-item">
+                    <span class="stat-val" id="statBookings">0</span>
+                    <span class="stat-lbl">Bookings</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val" id="statFavorites">0</span>
+                    <span class="stat-lbl">Favorites</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-actions">
+                <a href="booking-history.html" class="btn btn-outline" style="width:100%"><i class="fas fa-ticket-alt"></i> Booking History</a>
+                <button class="btn btn-logout" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+        
+        <section class="main-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-target="info">Profile Info</button>
+                <button class="tab-btn" data-target="favorites">Favorites</button>
+                <button class="tab-btn" data-target="recent">Recently Viewed</button>
+            </div>
+            
+            <div class="tab-content active" id="tab-info">
+                <h3>Personal Information</h3>
+                <p style="color:var(--text-muted); margin-bottom:20px; font-size:0.9rem;">Update your personal details below.</p>
+                <form id="profileForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="editName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="editEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="editPhone">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-save">Save Changes</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="tab-favorites">
+                <div id="favoritesGrid" class="movie-grid"></div>
+            </div>
+            
+            <div class="tab-content" id="tab-recent">
+                <div id="recentGrid" class="movie-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><a href="movies.html">Movies</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="faq.html">Help Center</a><a href="contact.html">Feedback</a><a href="#">Terms of Service</a><a href="#">Privacy Policy</a></div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4><p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm"><input type="email" placeholder="Your email" required><button type="submit"><i class="fas fa-paper-plane"></i></button></form>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(!window.Storage || !window.Storage.isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const user = window.Storage.getUser();
+            const bookings = window.Storage.getBookings();
+            const favorites = window.Storage.getFavorites();
+            const recent = window.Storage.getRecentlyViewed();
+            
+            // Populate sidebar
+            document.getElementById('userNameDisplay').textContent = user.name;
+            document.getElementById('userEmailDisplay').textContent = user.email;
+            document.getElementById('userInitials').textContent = user.name.charAt(0).toUpperCase();
+            document.getElementById('userJoinDate').textContent = new Date(user.joinDate || Date.now()).toLocaleDateString();
+            document.getElementById('statBookings').textContent = bookings.length;
+            document.getElementById('statFavorites').textContent = favorites.length;
+            
+            // Populate form
+            document.getElementById('editName').value = user.name;
+            document.getElementById('editEmail').value = user.email;
+            document.getElementById('editPhone').value = user.phone || '';
+            
+            // Tab logic
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById(`tab-${btn.dataset.target}`).classList.add('active');
+                });
+            });
+            
+            // Form submit
+            document.getElementById('profileForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                user.name = document.getElementById('editName').value.trim();
+                user.email = document.getElementById('editEmail').value.trim();
+                user.phone = document.getElementById('editPhone').value.trim();
+                window.Storage.setUser(user);
+                
+                document.getElementById('userNameDisplay').textContent = user.name;
+                document.getElementById('userEmailDisplay').textContent = user.email;
+                document.getElementById('userInitials').textContent = user.name.charAt(0).toUpperCase();
+                
+                window.showToast('Profile updated successfully!', 'success');
+            });
+            
+            // Logout
+            document.getElementById('btnLogout').addEventListener('click', () => {
+                window.Storage.logout();
+                window.showToast('Logged out successfully', 'success');
+                setTimeout(() => window.location.href = 'index.html', 800);
+            });
+            
+            // Render Grids
+            const renderMovieGrid = (containerId, movieIds, emptyMessage) => {
+                const container = document.getElementById(containerId);
+                if(!movieIds.length) {
+                    container.innerHTML = `<div class="empty-state" style="grid-column: 1/-1"><i class="fas fa-film"></i><p>${emptyMessage}</p><a href="movies.html" class="btn btn-outline">Browse Movies</a></div>`;
+                    return;
+                }
+                const movies = window.MOVIES.filter(m => movieIds.includes(m.id));
+                let html = '';
+                movies.forEach(movie => {
+                    html += `
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        </div>
+                        <div class="movie-info" style="padding: 10px;">
+                            <h4 style="font-size: 1rem; margin-bottom: 5px;">${movie.title}</h4>
+                            <a href="movie-details.html?id=${movie.id}" class="btn btn-primary" style="padding: 5px; font-size: 0.8rem; width: 100%;">View</a>
+                        </div>
+                    </div>`;
+                });
+                container.innerHTML = html;
+            };
+            
+            renderMovieGrid('favoritesGrid', favorites, 'No favorites yet. Browse movies to add some!');
+            renderMovieGrid('recentGrid', recent, 'No recently viewed movies.');
+        });
+    </script>
+</body>
+</html>

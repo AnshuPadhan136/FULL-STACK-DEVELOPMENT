@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - CineBook</title>
+    <meta name="description" content="404 Error - Page not found">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        body { overflow-x: hidden; }
+        .error-container { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px 60px; position: relative; z-index: 1; }
+        
+        .error-code { font-size: 10rem; font-weight: 800; font-family: 'Outfit', sans-serif; margin: 0; line-height: 1; display: flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: float 6s ease-in-out infinite; }
+        .film-reel { color: var(--primary-color); font-size: 8rem; -webkit-text-fill-color: var(--primary-color); animation: spin 10s linear infinite; }
+        
+        .error-title { font-size: 2.5rem; font-family: 'Outfit', sans-serif; margin: 20px 0 10px; }
+        .error-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 500px; }
+        
+        .search-box { display: flex; max-width: 500px; width: 100%; margin: 0 auto 40px; box-shadow: var(--shadow-md); border-radius: 30px; overflow: hidden; }
+        .search-box input { flex: 1; padding: 15px 25px; border: none; background: var(--glass-bg); color: var(--text-color); font-size: 1rem; outline: none; }
+        .search-box button { padding: 0 25px; background: var(--primary-color); color: white; border: none; cursor: pointer; font-size: 1.1rem; transition: background 0.3s; }
+        .search-box button:hover { background: var(--secondary-color); }
+        
+        .error-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        
+        /* Background decorative elements */
+        .bg-elements { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; pointer-events: none; }
+        .strip { position: absolute; font-size: 5rem; color: var(--border-color); opacity: 0.1; }
+        .strip-1 { top: 20%; left: 10%; animation: float 8s ease-in-out infinite, spin 20s linear infinite; }
+        .strip-2 { top: 70%; right: 15%; animation: float 12s ease-in-out infinite reverse, spin 25s linear infinite reverse; }
+        .strip-3 { top: 40%; right: 30%; animation: float 10s ease-in-out infinite, spin 30s linear infinite; font-size: 3rem; }
+        .strip-4 { bottom: 10%; left: 25%; animation: float 9s ease-in-out infinite reverse, spin 15s linear infinite; font-size: 4rem; }
+        
+        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0); } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        @media (max-width: 600px) { .error-code { font-size: 6rem; } .film-reel { font-size: 5rem; } }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen"><div class="spinner"></div><p>Loading...</p></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="bg-elements">
+        <i class="fas fa-film strip strip-1"></i>
+        <i class="fas fa-ticket-alt strip strip-2"></i>
+        <i class="fas fa-video strip strip-3"></i>
+        <i class="fas fa-popcorn strip strip-4"></i>
+    </div>
+    
+    <main class="error-container">
+        <div class="error-code">
+            4<i class="fas fa-compact-disc film-reel"></i>4
+        </div>
+        <h1 class="error-title">Oops! Scene Not Found</h1>
+        <p class="error-subtitle">The page you're looking for seems to have left the theater or never existed in our script.</p>
+        
+        <form class="search-box" action="movies.html" method="GET">
+            <input type="text" name="q" placeholder="Search for a movie instead..." required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        
+        <div class="error-actions">
+            <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+            <a href="movies.html" class="btn btn-outline"><i class="fas fa-film"></i> Browse Movies</a>
+        </div>
+    </main>
+
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

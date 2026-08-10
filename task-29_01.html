@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+}
+
+.container{
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    width:350px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+h1{
+    color:#333;
+    margin-bottom:20px;
+}
+
+.input-box{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+input{
+    width:80px;
+    padding:10px;
+    font-size:18px;
+    text-align:center;
+    border:2px solid #2575fc;
+    border-radius:8px;
+}
+
+#timer{
+    font-size:55px;
+    font-weight:bold;
+    color:#2575fc;
+    margin:20px 0;
+}
+
+button{
+    padding:10px 20px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#start{background:#28a745;}
+#stop{background:#dc3545;}
+#reset{background:#007bff;}
+
+button:hover{
+    transform:scale(1.05);
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Countdown Timer</h1>
+
+<div class="input-box">
+    <input type="number" id="minutes" placeholder="Min" min="0">
+    <input type="number" id="seconds" placeholder="Sec" min="0" max="59">
+</div>
+
+<div id="timer">00:00</div>
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+<button id="reset">Reset</button>
+
+</div>
+
+<script>
+
+let totalSeconds = 0;
+let timer = null;
+let running = false;
+
+const display = document.getElementById("timer");
+
+function updateDisplay(){
+
+    let min = Math.floor(totalSeconds / 60);
+    let sec = totalSeconds % 60;
+
+    display.innerHTML =
+        String(min).padStart(2,'0') + ":" +
+        String(sec).padStart(2,'0');
+}
+
+document.getElementById("start").onclick = function(){
+
+    if(running) return;
+
+    if(totalSeconds === 0){
+
+        let min = parseInt(document.getElementById("minutes").value) || 0;
+        let sec = parseInt(document.getElementById("seconds").value) || 0;
+
+        if(sec > 59){
+            alert("Seconds should be between 0 and 59.");
+            return;
+        }
+
+        totalSeconds = min * 60 + sec;
+
+        if(totalSeconds <= 0){
+            alert("Please enter a valid time.");
+            return;
+        }
+
+        updateDisplay();
+    }
+
+    running = true;
+
+    timer = setInterval(function(){
+
+        if(totalSeconds > 0){
+            totalSeconds--;
+            updateDisplay();
+        }
+        else{
+            clearInterval(timer);
+            running = false;
+            alert("⏰ Time's Up!");
+        }
+
+    },1000);
+
+};
+
+document.getElementById("stop").onclick = function(){
+
+    clearInterval(timer);
+    running = false;
+
+};
+
+document.getElementById("reset").onclick = function(){
+
+    clearInterval(timer);
+    running = false;
+    totalSeconds = 0;
+
+    document.getElementById("minutes").value = "";
+    document.getElementById("seconds").value = "";
+
+    display.innerHTML = "00:00";
+
+};
+
+updateDisplay();
+
+</script>
+
+</body>
+</html>

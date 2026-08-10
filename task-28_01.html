@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Profile Card</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#f5f7fa,#dfe9f3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    width:330px;
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+    transition:.4s;
+}
+
+.card.hide{
+    transform:scale(.5);
+    opacity:0;
+}
+
+.profile{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #0095f6;
+    margin-bottom:15px;
+}
+
+.userid{
+    font-size:20px;
+    font-weight:bold;
+    color:#262626;
+}
+
+.name{
+    margin-top:8px;
+    color:#666;
+    font-size:16px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:30px;
+}
+
+button{
+    border:none;
+    outline:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+    transition:.3s;
+}
+
+.remove{
+    background:#e53935;
+}
+
+.remove:hover{
+    background:#c62828;
+}
+
+.add{
+    background:#0095f6;
+}
+
+.add:hover{
+    background:#0077cc;
+}
+
+.added{
+    background:gray !important;
+    cursor:default;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card" id="card">
+
+<img src="https://i.pravatar.cc/200" class="profile">
+
+<div class="userid">@john_doe</div>
+
+<div class="name">John Doe</div>
+
+<div class="buttons">
+
+<button class="remove" onclick="removeUser()">
+Remove User
+</button>
+
+<button id="addBtn" class="add" onclick="addUser()">
+Add User
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function addUser(){
+
+let btn=document.getElementById("addBtn");
+
+if(btn.classList.contains("added"))
+return;
+
+alert("User Added");
+
+btn.innerHTML="Added";
+
+btn.classList.add("added");
+
+}
+
+function removeUser(){
+
+let choice=confirm("Are you sure you want to remove this user?");
+
+if(choice){
+
+document.getElementById("card").classList.add("hide");
+
+setTimeout(()=>{
+document.getElementById("card").style.display="none";
+},400);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

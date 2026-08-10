@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CineBook</title>
+    <meta name="description" content="Learn more about CineBook's mission and team">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .hero-section { text-align: center; padding: 140px 20px 80px; background: linear-gradient(to bottom, var(--primary-color-alpha), transparent); }
+        .hero-title { font-size: 3.5rem; font-family: 'Outfit', sans-serif; margin-bottom: 20px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        
+        .section-container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        
+        .mission-card { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 50px; text-align: center; box-shadow: var(--shadow-lg); }
+        .mission-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; }
+        .mission-title { font-size: 2rem; font-family: 'Outfit', sans-serif; margin-bottom: 20px; }
+        .mission-text { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; max-width: 800px; margin: 0 auto; }
+        
+        .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 60px; }
+        .stat-card { text-align: center; }
+        .stat-number { font-size: 3rem; font-weight: 800; font-family: 'Outfit', sans-serif; color: var(--primary-color); margin-bottom: 10px; }
+        .stat-label { font-size: 1.1rem; color: var(--text-color); font-weight: 500; }
+        
+        .team-section { margin-top: 80px; }
+        .section-title { text-align: center; font-size: 2.5rem; font-family: 'Outfit', sans-serif; margin-bottom: 50px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .team-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 30px; text-align: center; transition: transform 0.3s; }
+        .team-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .team-avatar { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: white; font-weight: 700; margin: 0 auto 20px; box-shadow: var(--shadow-md); }
+        .team-name { font-size: 1.25rem; font-family: 'Outfit', sans-serif; margin-bottom: 5px; }
+        .team-role { color: var(--primary-color); font-weight: 500; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .team-bio { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; }
+        .team-social { display: flex; justify-content: center; gap: 15px; }
+        .team-social a { color: var(--text-muted); transition: color 0.3s; }
+        .team-social a:hover { color: var(--primary-color); }
+        
+        .values-section { margin-top: 80px; padding-bottom: 60px; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .value-card { background: var(--card-bg); padding: 30px; border-radius: var(--radius-md); text-align: center; border: 1px solid var(--border-color); }
+        .value-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+        .value-title { font-size: 1.5rem; margin-bottom: 15px; font-family: 'Outfit', sans-serif; }
+        .value-text { color: var(--text-muted); line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen"><div class="spinner"></div><p>Loading...</p></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="hero-section" data-animate="fade-in">
+        <h1 class="hero-title">About CineBook</h1>
+        <p class="hero-subtitle">We are revolutionizing the way you experience cinema by making movie ticket booking seamless, fast, and exciting.</p>
+    </header>
+    
+    <main class="section-container">
+        <div class="mission-card" data-animate="fade-up">
+            <i class="fas fa-rocket mission-icon"></i>
+            <h2 class="mission-title">Our Mission</h2>
+            <p class="mission-text">At CineBook, our mission is to connect movie lovers with unforgettable cinematic experiences. We believe that the magic of movies should begin the moment you decide to go, which is why we've built a platform that is intuitive, reliable, and beautifully designed.</p>
+        </div>
+        
+        <div class="stats-section" id="statsSection">
+            <div class="stat-card" data-animate="fade-up" data-delay="100">
+                <div class="stat-number" data-target="10000">0</div>
+                <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-card" data-animate="fade-up" data-delay="200">
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Movies</div>
+            </div>
+            <div class="stat-card" data-animate="fade-up" data-delay="300">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Theaters</div>
+            </div>
+            <div class="stat-card" data-animate="fade-up" data-delay="400">
+                <div class="stat-number" data-target="100000">0</div>
+                <div class="stat-label">Tickets Sold</div>
+            </div>
+        </div>
+        
+        <section class="team-section">
+            <h2 class="section-title" data-animate="fade-up">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card" data-animate="fade-up" data-delay="100">
+                    <div class="team-avatar">AM</div>
+                    <h3 class="team-name">Arjun Mehta</h3>
+                    <div class="team-role">CEO & Founder</div>
+                    <p class="team-bio">Passionate about transforming the movie-going experience and building products people love.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-card" data-animate="fade-up" data-delay="200">
+                    <div class="team-avatar">SC</div>
+                    <h3 class="team-name">Sarah Chen</h3>
+                    <div class="team-role">CTO</div>
+                    <p class="team-bio">Building the future of entertainment technology with scalable and robust architecture.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-card" data-animate="fade-up" data-delay="300">
+                    <div class="team-avatar">PS</div>
+                    <h3 class="team-name">Priya Sharma</h3>
+                    <div class="team-role">Head of Design</div>
+                    <p class="team-bio">Creating intuitive, beautiful, and premium user experiences for our platforms.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="team-card" data-animate="fade-up" data-delay="400">
+                    <div class="team-avatar">DM</div>
+                    <h3 class="team-name">David Miller</h3>
+                    <div class="team-role">VP Marketing</div>
+                    <p class="team-bio">Connecting movie lovers with unforgettable experiences across the globe.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="values-section">
+            <h2 class="section-title" data-animate="fade-up">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card" data-animate="fade-up" data-delay="100">
+                    <i class="fas fa-lightbulb value-icon"></i>
+                    <h3 class="value-title">Innovation</h3>
+                    <p class="value-text">We constantly push the boundaries to bring you the best features and seamless technology.</p>
+                </div>
+                <div class="value-card" data-animate="fade-up" data-delay="200">
+                    <i class="fas fa-heart value-icon"></i>
+                    <h3 class="value-title">Customer First</h3>
+                    <p class="value-text">Your experience matters most. Every decision we make revolves around our users.</p>
+                </div>
+                <div class="value-card" data-animate="fade-up" data-delay="300">
+                    <i class="fas fa-star value-icon"></i>
+                    <h3 class="value-title">Excellence</h3>
+                    <p class="value-text">We strive for excellence in everything we do, from code quality to customer support.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><a href="movies.html">Movies</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="faq.html">Help Center</a><a href="contact.html">Feedback</a><a href="#">Terms of Service</a><a href="#">Privacy Policy</a></div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4><p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm"><input type="email" placeholder="Your email" required><button type="submit"><i class="fas fa-paper-plane"></i></button></form>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Number counter animation on scroll
+        const formatNumber = (num) => {
+            if (num >= 1000) return (num/1000).toFixed(num % 1000 !== 0 ? 1 : 0) + 'k+';
+            return num + '+';
+        };
+
+        const animateValue = (obj, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // easeOutQuart
+                const ease = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(ease * (end - start) + start);
+                
+                if (end >= 1000) {
+                    obj.innerHTML = formatNumber(current);
+                } else {
+                    obj.innerHTML = current + '+';
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerHTML = formatNumber(end);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const observerOptions = { threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-number');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        animateValue(counter, 0, target, 2000);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.getElementById('statsSection');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

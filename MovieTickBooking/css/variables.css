@@ -1,0 +1,82 @@
+/* css/variables.css */
+
+:root {
+  /* Dark theme (default) */
+  --bg-primary: hsl(225, 25%, 8%);
+  --bg-secondary: hsl(225, 20%, 12%);
+  --bg-tertiary: hsl(225, 18%, 16%);
+  --bg-card: hsl(225, 18%, 14%);
+  
+  --accent: hsl(12, 90%, 58%); /* vibrant coral */
+  --accent-hover: hsl(12, 85%, 48%);
+  --accent-2: hsl(42, 95%, 55%); /* gold/amber */
+  --accent-2-hover: hsl(42, 90%, 45%);
+  
+  --text-primary: hsl(0, 0%, 96%);
+  --text-secondary: hsl(220, 10%, 70%);
+  --text-muted: hsl(220, 8%, 50%);
+  
+  --border: hsla(0, 0%, 100%, 0.06);
+  --glass-bg: hsla(225, 25%, 12%, 0.75);
+  --glass-border: hsla(0, 0%, 100%, 0.08);
+  --glass-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.4);
+  
+  --vip-color: hsl(42, 95%, 55%);
+  --premium-color: hsl(265, 60%, 58%);
+  --regular-color: hsl(170, 55%, 45%);
+  --booked-color: hsl(220, 8%, 30%);
+  --selected-color: hsl(12, 90%, 58%);
+  
+  --success: hsl(152, 60%, 42%);
+  --error: hsl(0, 72%, 55%);
+  --warning: hsl(38, 92%, 55%);
+  --info: hsl(210, 80%, 58%);
+  
+  /* Radii */
+  --radius-xs: 6px; 
+  --radius-sm: 8px; 
+  --radius-md: 12px; 
+  --radius-lg: 20px; 
+  --radius-xl: 28px; 
+  --radius-full: 50%;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px hsla(0,0%,0%,0.2);
+  --shadow-md: 0 4px 20px hsla(0,0%,0%,0.3);
+  --shadow-lg: 0 8px 40px hsla(0,0%,0%,0.4);
+  --shadow-xl: 0 16px 64px hsla(0,0%,0%,0.5);
+  
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Z-index */
+  --z-dropdown: 100; 
+  --z-sticky: 200; 
+  --z-modal: 300; 
+  --z-toast: 400; 
+  --z-top: 500;
+}
+
+[data-theme="light"] {
+  --bg-primary: hsl(220, 20%, 97%);
+  --bg-secondary: hsl(220, 15%, 93%);
+  --bg-tertiary: hsl(220, 12%, 88%);
+  --bg-card: hsl(0, 0%, 100%);
+  
+  --text-primary: hsl(225, 25%, 12%);
+  --text-secondary: hsl(220, 10%, 40%);
+  --text-muted: hsl(220, 8%, 55%);
+  
+  --border: hsla(0, 0%, 0%, 0.08);
+  --glass-bg: hsla(0, 0%, 100%, 0.8);
+  --glass-border: hsla(0, 0%, 0%, 0.06);
+  --glass-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.1);
+  
+  --booked-color: hsl(220, 8%, 75%);
+}

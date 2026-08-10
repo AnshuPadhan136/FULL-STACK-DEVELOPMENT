@@ -1,0 +1,6 @@
+{
+  "name": "E-Commerce Blueprint & Store",
+  "description": "A modern, full-featured e-commerce platform with live storefront, admin dashboard, order management, and interactive technical architecture blueprint.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

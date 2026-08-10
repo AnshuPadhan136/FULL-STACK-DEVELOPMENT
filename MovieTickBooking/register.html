@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - CineBook</title>
+    <meta name="description" content="Create a CineBook account">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .auth-container { min-height: calc(100vh - 160px); display: flex; align-items: center; justify-content: center; padding: 40px 20px; background: linear-gradient(-45deg, var(--bg-color), var(--primary-color-alpha), var(--bg-color)); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
+        .auth-card { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 40px; width: 100%; max-width: 440px; box-shadow: var(--shadow-lg); text-align: center; }
+        .auth-logo { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px; }
+        .auth-title { font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 10px; }
+        .auth-subtitle { color: var(--text-muted); margin-bottom: 30px; }
+        .social-login { display: flex; gap: 15px; margin-bottom: 25px; }
+        .btn-social { flex: 1; display: flex; align-items: center; justify-content: center; padding: 10px; border-radius: var(--radius-md); background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); cursor: pointer; transition: all 0.3s; }
+        .btn-social:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--primary-color); }
+        .auth-divider { display: flex; align-items: center; margin: 25px 0; color: var(--text-muted); font-size: 0.9rem; }
+        .auth-divider::before, .auth-divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-color); }
+        .auth-divider::before { margin-right: 15px; }
+        .auth-divider::after { margin-left: 15px; }
+        .form-group { margin-bottom: 20px; text-align: left; position: relative; }
+        .input-icon-wrapper { position: relative; }
+        .input-icon-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .input-icon-wrapper input { width: 100%; padding: 12px 15px 12px 45px; border-radius: var(--radius-md); background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); color: var(--text-color); font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.3s; }
+        .input-icon-wrapper input:focus { border-color: var(--primary-color); }
+        .input-icon-wrapper .toggle-password { position: absolute; right: 15px; left: auto; cursor: pointer; }
+        .password-strength { height: 4px; border-radius: 2px; background: var(--border-color); margin-top: 8px; overflow: hidden; }
+        .strength-bar { height: 100%; width: 0; transition: all 0.3s ease; }
+        .strength-weak { background: #ef4444; width: 33%; }
+        .strength-medium { background: #eab308; width: 66%; }
+        .strength-strong { background: #22c55e; width: 100%; }
+        .btn-submit { width: 100%; padding: 14px; font-weight: 600; font-size: 1.1rem; margin-top: 10px; }
+        .auth-footer { margin-top: 25px; color: var(--text-muted); font-size: 0.95rem; }
+        .auth-footer a { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+        .auth-footer a:hover { text-decoration: underline; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingScreen"><div class="spinner"></div><p>Loading...</p></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><i class="fas fa-film"></i><span>CineBook</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="movies.html" class="nav-link">Movies</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="profile.html" class="nav-user" aria-label="User profile"><i class="fas fa-user-circle"></i></a>
+                <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="auth-container" data-animate="fade-in">
+        <div class="auth-card">
+            <div class="auth-logo"><i class="fas fa-film"></i></div>
+            <h1 class="auth-title">Create Account</h1>
+            <p class="auth-subtitle">Join CineBook for the best movie experience</p>
+            
+            <div class="social-login">
+                <button class="btn-social" onclick="window.showToast('Google signup coming soon!', 'info')"><i class="fab fa-google"></i></button>
+                <button class="btn-social" onclick="window.showToast('Facebook signup coming soon!', 'info')"><i class="fab fa-facebook-f"></i></button>
+                <button class="btn-social" onclick="window.showToast('Apple signup coming soon!', 'info')"><i class="fab fa-apple"></i></button>
+            </div>
+            
+            <div class="auth-divider">or register with email</div>
+            
+            <form id="registerForm" novalidate>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullname" placeholder="Full Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password" required>
+                        <i class="fas fa-eye toggle-password" id="togglePassword1"></i>
+                    </div>
+                    <div class="password-strength"><div class="strength-bar" id="strengthBar"></div></div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                        <i class="fas fa-eye toggle-password" id="togglePassword2"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Create Account</button>
+            </form>
+            
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo"><i class="fas fa-film"></i> CineBook</a>
+                    <p class="footer-desc">Your ultimate destination for movie ticket booking. Experience cinema like never before.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Quick Links</h4><a href="movies.html">Movies</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="faq.html">Help Center</a><a href="contact.html">Feedback</a><a href="#">Terms of Service</a><a href="#">Privacy Policy</a></div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4><p>Subscribe for exclusive offers & updates.</p>
+                    <form class="newsletter-form" id="newsletterForm"><input type="email" placeholder="Your email" required><button type="submit"><i class="fas fa-paper-plane"></i></button></form>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> CineBook. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/validation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.Storage && window.Storage.isLoggedIn()) {
+                window.location.href = 'profile.html';
+                return;
+            }
+            const form = document.getElementById('registerForm');
+            const inputs = form.querySelectorAll('input');
+            const passwordInput = document.getElementById('password');
+            const strengthBar = document.getElementById('strengthBar');
+            
+            document.querySelectorAll('.toggle-password').forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            });
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', () => window.Validator.clearError(input.parentElement));
+            });
+            
+            passwordInput.addEventListener('input', (e) => {
+                const pw = e.target.value;
+                strengthBar.className = 'strength-bar';
+                if(pw.length === 0) { }
+                else if(pw.length < 6) { strengthBar.classList.add('strength-weak'); }
+                else if(window.Validator.isStrongPassword(pw)) { strengthBar.classList.add('strength-strong'); }
+                else { strengthBar.classList.add('strength-medium'); }
+            });
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                window.Validator.clearAllErrors(form);
+                let isValid = true;
+                
+                const name = document.getElementById('fullname').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const pw = passwordInput.value;
+                const confirmPw = document.getElementById('confirmPassword').value;
+                
+                if(!window.Validator.required(name) || !window.Validator.minLength(name, 2)) {
+                    window.Validator.showError(document.getElementById('fullname').parentElement, 'Valid name required');
+                    isValid = false;
+                }
+                if(!window.Validator.required(email) || !window.Validator.isEmail(email)) {
+                    window.Validator.showError(document.getElementById('email').parentElement, 'Valid email required');
+                    isValid = false;
+                }
+                if(!window.Validator.required(phone) || !window.Validator.isPhone(phone)) {
+                    window.Validator.showError(document.getElementById('phone').parentElement, 'Valid phone required');
+                    isValid = false;
+                }
+                if(!window.Validator.required(pw) || pw.length < 8 || !/[A-Z]/.test(pw) || !/[0-9]/.test(pw)) {
+                    window.Validator.showError(passwordInput.parentElement, 'Min 8 chars, 1 uppercase, 1 number');
+                    isValid = false;
+                }
+                if(!window.Validator.passwordsMatch(pw, confirmPw)) {
+                    window.Validator.showError(document.getElementById('confirmPassword').parentElement, 'Passwords must match');
+                    isValid = false;
+                }
+                
+                if(isValid) {
+                    const btn = form.querySelector('.btn-submit');
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
+                    btn.disabled = true;
+                    
+                    setTimeout(() => {
+                        window.Storage.setUser({ name, email, phone, joinDate: new Date().toISOString() });
+                        window.showToast('Account created successfully!', 'success');
+                        setTimeout(() => window.location.href = 'profile.html', 1000);
+                    }, 800);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
